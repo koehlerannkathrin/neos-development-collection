@@ -557,11 +557,19 @@ The link value object can be queried as usual. An example rendering would look t
 Example::
 
     link = ${q(node).property("myLinkObject")}
+    @process.convertUris = Neos.Neos:ConvertUris
+
     renderer = afx`
         <a href={props.link.href} title={props.link.title} target={props.link.target} rel={props.link.rel} rel.@if={props.link.rel != []}>
             My Text
         </a>
     `
+
+When rendering values created with the LinkEditor in Fusion, internal URIs
+(e.g. ``node://<uuid>`` or ``asset://<uuid>``) must be converted to public URLs.
+
+This can be done by adding the ``@process.convertUris = Neos.Neos:ConvertUris`` processor.
+
 
 Property Type: integer ``TextFieldEditor``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
